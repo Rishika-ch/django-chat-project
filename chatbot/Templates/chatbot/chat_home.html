@@ -1,0 +1,24 @@
+<!-- chat_home.html -->
+<h1>Welcome, {{ user.username }}!</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <label for="receiver">Receiver:</label>
+  <select name="receiver">
+    {% for user in users %}
+      <option value="{{ user.id }}">{{ user.username }}</option>
+    {% endfor %}
+  </select>
+  
+  <label for="content">Message:</label>
+  <textarea name="content" placeholder="Type your message"></textarea>
+  
+  <button type="submit">Send Message</button>
+</form>
+
+<div class="messages">
+  {% for message in messages %}
+    <p><strong>{{ message.sender.username }}:</strong> {{ message.content }} <em>{{ message.timestamp }}</em></p>
+  {% endfor %}
+</div>
+

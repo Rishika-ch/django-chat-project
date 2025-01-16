@@ -1,0 +1,12 @@
+<!-- send_message.html -->
+<h1>Send Message to {{ recipient.username }}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <textarea name="content" placeholder="Type your message"></textarea>
+  {% if parent_message %}
+    <input type="hidden" name="parent_message" value="{{ parent_message.id }}">
+  {% endif %}
+  <button type="submit">Send Message</button>
+</form>
+
